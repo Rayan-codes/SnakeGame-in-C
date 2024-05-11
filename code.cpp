@@ -130,3 +130,28 @@ class data{
  		   SetConsoleCursorPosition(hConsole, position);
 		}
 };
+
+int main()
+{
+	snake_movements s1;
+	int i=1,level=0,rigid_boundry;
+	rigid_boundry = s1.rigid_boundry_fun();//rigid_boundry_fun() called and is set equal to varible rigid_boundry
+	system("cls");
+	level=s1.set_level();//set varible level equal to value returned from function set_level()
+	
+
+	
+	do{
+		s1.consol_set_handler(); // Clear the console
+		s1.input();
+		s1.control();//function called
+		s1.snake_movement(rigid_boundry);//setting dimension of snake accourding to input
+		Sleep(level);//it stop program accourding to level set(control the speed of do-while loop)
+		s1.consol_set_handler(); // Clear the console
+		i=s1. game_over(rigid_boundry);// i control do-while loop
+	} while(i==1);
+	
+
+
+	return 0;
+}
