@@ -1,2 +1,2 @@
-# snake-game-c-
+# snake-game-c++
 Simple snake game written in c++
