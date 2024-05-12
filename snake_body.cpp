@@ -1,16 +1,11 @@
 #include<iostream>
-#include <windows.h>//for using pre-defined function Sleep()
-
-#include<conio.h>//for if _kbhit() & for _getch() 
-//(_kbhit() & _getch() are explained next in code)
-
+#include <windows.h>
 using namespace std;
 
 int height =14;
 int width=14;
 int b_x=5;
 int b_y=5;
-char move='w';
 
 void snake_movement()
 {
@@ -33,7 +28,7 @@ void snake_movement()
 			else//make snake's body 
 			{
 				bool body = false;//bool to check how many spaces are needed in current row(for example if snake is taking space of 2 boxes then empty space of 2 box should be reduced. if condition on cout<<" " is given below)
-				if(b_x==j&&b_y==i)
+				if(b_x==i&&b_y==j)
 				{
 					cout<<"*";
 					body = true;//if bool become true 2 times then 2 empty spaces will be reduced
@@ -46,46 +41,6 @@ void snake_movement()
 		}
 		cout<<endl;
 	}
-	if(_kbhit())//if keyboard hit(pre defined function in conio)
-	{
-		move=_getch();//save input value to char(pre defined function in conio);
-	}
-	switch(move)//setting snake movement 
-	{
-		case 'w':
-			b_y--;
-			break;
-		case 's':
-			b_y++;
-			break;
-		case 'a':
-			b_x--;
-			break;
-		case 'd':
-			b_x++;
-			break;
-	}
-	switch(b_x)//if snakes dimension on x-axis goes out of the box
-		{
-			case 15:
-				b_x=2;
-				break;
-			case 1:
-				b_x=14;
-				break;
-		}
-		switch(b_y)//if snakes dimension on y-axis goes out of the box
-		{
-			case 15:
-				b_y=2;
-				break;
-			case 1:
-				b_y=14;
-				break;
-		}
-	Sleep(250);//stop console for 250 miliseconds
-	system("cls");//clear whole console
-	snake_movement();//recursion for infinity loop
 }
 int main()
 {
