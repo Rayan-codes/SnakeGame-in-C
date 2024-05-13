@@ -130,6 +130,74 @@ class data{
  		   SetConsoleCursorPosition(hConsole, position);
 		}
 };
+class snake_movements: public data {//inheritance from class data
+	private:
+		
+	public:
+		void srand_fun()//set fruit dimension
+		{
+			int x;
+			do
+			{
+				srand(time(0));
+				set_f_x(rand()% 13+2);
+				//f_x=rand()% 13+2;
+				set_f_y(rand()% 13+2);
+				//f_y=rand()% 13+2;
+				x=srand_check();//calling srand_check
+			}while(x==1);//it should generate new dimension fir fruit if fruit is rendring on snake
+		
+		}
+		void control()//cotrol loops and snake head + control most of functions
+		{
+			for(int i=1;i<=get_height();i++)
+			{
+				for(int j=1;j<=get_width();j++)
+				{
+					if(i==1)//first row
+					{
+						cout<<"_";
+					}
+					else if(i==get_height()&&i<=get_width())//last row
+					{
+						cout<<"-";
+					}
+					else if(j==1||j==get_width())//for columns
+					{
+						cout<<"|";
+					}
+					else if(get_f_x()==get_s_x()&&get_f_y()==get_s_y())//check wheather snake had eaten the fruit or not
+					{
+						srand_fun();
+						set_size(get_size()+1);
+					}
+					else if(get_f_x()==j&&get_f_y()==i)//deploy fruit
+					{
+						cout<<"\033[1;31mF\033[0m";
+					}
+					else//make snake's body 
+					{
+						bool body = false;//bool to check how many spaces are needed in current row(for example if snake is taking space of 2 boxes then empty space of 2 box should be reduced. if condition on cout<<" " is given below)
+						for(int k=0;k<get_size();k++)
+						{
+							if(get_body_x(k)==j&&get_body_y(k)==i)
+							{
+								cout<<"\033[1;33m@\033[0m";
+								body = true;//if bool become true 2 times then 2 empty spaces will be reduced
+							}
+						}
+						if(!body)
+						{
+							cout<<" ";
+						}
+					}
+				}
+				cout<<endl;
+			}
+			cout<<"Your score is: "<<get_size()*10<<endl<<endl;
+			cout<<"Snake Head: ("<<get_s_x()<<", "<<get_s_y()<<")"<<endl;//printing snake's dimension to make it easier to find issue in future if needed
+  		 	cout<<"Fruit: ("<<get_f_x()<<", "<<get_f_y()<<")"<<endl;//same as above
+		}
 
 int main()
 {
@@ -155,3 +223,5 @@ int main()
 
 	return 0;
 }
+
+
