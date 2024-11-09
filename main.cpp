@@ -1,8 +1,8 @@
 #include<iostream>
-#include<conio.h>//for if _kbhit() & for _getch()
-#include <windows.h> // For Sleep() function
-#include<cstdlib>//library for srand
-#include<ctime>//to include time
+#include<conio.h>
+#include <windows.h> 
+#include<cstdlib>
+#include<ctime>
 using namespace std;
 
 class data{
